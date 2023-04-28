@@ -2,10 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-    html{
-       display: flex;
-       justify-content: center;
-        font-family: 'Kanit', sans-serif;
-    }
-}

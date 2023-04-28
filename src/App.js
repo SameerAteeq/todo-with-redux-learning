@@ -1,30 +1,18 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import AddTodoField from "./components/AddTodoField";
-import PageTitle from "./components/PageTitle";
-import Todos from "./components/Todos";
-import { deleteTodo, editTodo } from "./redux/todoSlice";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import EditPage from "./pages/EditPage";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
-  const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos.items);
-  const handleDelete = (id) => {
-    dispatch(deleteTodo(id));
-  };
-  const handleEdit = (id, text) => {
-    dispatch(
-      editTodo({
-        id: id,
-        title: text,
-      })
-    );
-  };
   return (
-    <div className="w-full h-full d-flex justify-center items-center max-w-[600px]">
-      <PageTitle>Todo App</PageTitle>
-      <AddTodoField />
-      <Todos editTodo={handleEdit} deleteTodo={handleDelete} todos={todos} />
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<h1>Not found</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
